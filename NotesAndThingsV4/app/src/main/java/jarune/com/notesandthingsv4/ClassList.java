@@ -7,6 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+
+//List view which displays all the classes
+//a person is in. It will have a button to
+//go to search for a class to add to your
+//subscriptions, and a button to create a
+//new class. Also, when they click on a list
+//view item, it will move them to the notes
+//page for that class
 public class ClassList extends AppCompatActivity {
 
     @Override

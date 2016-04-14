@@ -19,4 +19,8 @@
     <string name="title_activity_notes_list">NotesList</string>
     <string name="title_activity_add_new_note">AddNewNote</string>
     <string name="title_activity_register_account">RegisterAccount</string>
+
+    <!-- Strings related to class list -->
+    <string name="search_class_button">Search For Class</string>
+    <string name="create_class_button">Create New Class</string>
 </resources>
