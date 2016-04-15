@@ -12,7 +12,7 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="wrap_content"
         android:id="@+id/classList"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
@@ -21,21 +21,25 @@
     <Button
         android:id="@+id/search_button"
         style="@style/Button"
-        android:layout_below="@id/classList"
+        android:layout_alignParentBottom="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/stylebutton"
         android:minWidth="150dp"
-        android:text="@string/search_class_button" />
+        android:maxWidth="175dp"
+        android:text="@string/search_class_button"
+        android:onClick="searchButton" />
 
     <Button
         android:id="@+id/create_class_button"
         style="@style/Button"
         android:layout_width="wrap_content"
         android:minWidth="150dp"
+        android:maxWidth="175dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/classList"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:background="@drawable/stylebutton"
-        android:text="@string/create_class_button" />
+        android:text="@string/create_class_button"
+        android:onClick="createButton" />
 </RelativeLayout>
