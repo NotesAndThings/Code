@@ -23,4 +23,21 @@
     <!-- Strings related to class list -->
     <string name="search_class_button">Search For Class</string>
     <string name="create_class_button">Create New Class</string>
+
+    <!-- String related to Search Class -->
+    <string name="search_button">Search</string>
+    <string name="search_textbox">Search For Classes</string>
+
+    <!-- String related to Create Class -->
+    <string name="course_name_text">Course Name</string>
+    <string name="course_name_box">Mobile Programming</string>
+    <string name="course_number_text">Course Number</string>
+    <string name="course_number_box">CSCE 4623</string>
+    <string name="course_semester_text">Course Semester</string>
+    <string name="course_semester_box">Fall, Winter, Spring, or Summer</string>
+    <string name="course_instructor_text">Course Instructor</string>
+    <string name="course_instructor_box">Dr. Tingxin Yan</string>
+    <string name="course_year_text">Course Year</string>
+    <string name="course_year_box">2016</string>
+    <string name="submit_course_button">Sumbit Course</string>
 </resources>
