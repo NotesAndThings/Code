@@ -32,6 +32,7 @@ public class SqlHelper {
     }
 
     //function to get the class list for a particular user
+
     public static String classlist(String userid) throws IOException {
         CookieHandler.setDefault(new CookieManager(null, CookiePolicy.ACCEPT_ALL));
         URL url = new URL(link);
@@ -60,6 +61,8 @@ public class SqlHelper {
         String line = "";
 
         // Read Server Response
+        //Will look like:
+        //University|CourseNum|Instructor|Semester|Year|<br>
         while ((line = reader.readLine()) != null) {
             sb.append(line);
             //break;
@@ -137,6 +140,8 @@ public class SqlHelper {
         String line = null;
 
         // Read Server Response
+        //Will Look like:
+        //id
         while ((line = reader.readLine()) != null) {
             sb.append(line);
             //break;
@@ -216,6 +221,8 @@ public class SqlHelper {
         String line = null;
 
         // Read Server Response
+        //Will look like:
+        //pictureId|P_userId|ClassDate|Summary|<br>
         while ((line = reader.readLine()) != null) {
             sb.append(line);
             //break;
@@ -259,6 +266,7 @@ public class SqlHelper {
         return sb.toString();
     }
 
+    //NEEDS WORK AND TESTING
     public static String getnote(String pictureid) throws IOException {
         CookieHandler.setDefault(new CookieManager(null, CookiePolicy.ACCEPT_ALL));
         URL url = new URL(link);
@@ -287,6 +295,8 @@ public class SqlHelper {
         String line = null;
 
         // Read Server Response
+        //Will look like:
+        //image
         while ((line = reader.readLine()) != null) {
             sb.append(line);
             //break;

@@ -76,7 +76,7 @@ public class Login extends AppCompatActivity {
     }
 
     public void loginSuccessful() {
-        Intent intent = new Intent(Login.this, RegisterAccount.class);
+        Intent intent = new Intent(Login.this, ClassList.class);
         intent.putExtra("id", results);
         startActivity(intent);
     }
