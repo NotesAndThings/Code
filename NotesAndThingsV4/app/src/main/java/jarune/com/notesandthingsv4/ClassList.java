@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -68,6 +69,20 @@ public class ClassList extends AppCompatActivity {
             ListAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, courseNames);
             listView.setAdapter(adapter);
         }
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent intent = new Intent(ClassList.this, NotesList.class);
+                intent.putExtra("id", getIntent().getStringExtra("id"));
+                intent.putExtra("courseCount", getIntent().getIntExtra("courseCount", 0));
+                if(getIntent().getIntExtra("courseCount", 0) > 0) {
+                    intent.putExtra("courses", courses);
+                    intent.putExtra("courseId", courses.get(position).getID());
+                }
+                startActivity(intent);
+            }
+        });
     }
 
     public void searchButton(View view) {
