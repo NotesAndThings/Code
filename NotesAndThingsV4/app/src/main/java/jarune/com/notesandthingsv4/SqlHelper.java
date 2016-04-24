@@ -36,10 +36,7 @@ public class SqlHelper {
     public static String classlist(String userid) throws IOException {
         CookieHandler.setDefault(new CookieManager(null, CookiePolicy.ACCEPT_ALL));
         URL url = new URL(link);
-
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-        conn.setDoOutput(true);
         conn.setRequestMethod("POST");
         conn.setDoOutput(true);
         Uri.Builder builder = new Uri.Builder()
@@ -55,6 +52,8 @@ public class SqlHelper {
         os.close();
 
         conn.connect();
+        int status = conn.getResponseCode();
+        System.out.println(status);
         BufferedReader reader = new BufferedReader(new
                 InputStreamReader(conn.getInputStream()));
         StringBuilder sb = new StringBuilder();
@@ -146,6 +145,9 @@ public class SqlHelper {
             sb.append(line);
             //break;
         }
+        reader.close();
+        writer.close();
+        conn.disconnect();
         return sb.toString();
     }
 

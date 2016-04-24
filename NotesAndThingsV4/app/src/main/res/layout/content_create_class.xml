@@ -20,6 +20,7 @@
             android:layout_marginTop="5dip"
             android:layout_marginBottom="20dip"
             android:singleLine="true"
+            android:id="@+id/name"
             android:hint="@string/course_name_box"/>
 
         <TextView android:layout_width="fill_parent"
@@ -31,7 +32,8 @@
             android:layout_marginTop="5dip"
             android:layout_marginBottom="20dip"
             android:singleLine="true"
-            android:hint="@string/course_number_box"/>
+            android:hint="@string/course_number_box"
+            android:id="@+id/number"/>
 
         <TextView android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -42,7 +44,8 @@
             android:layout_marginTop="5dip"
             android:layout_marginBottom="20dip"
             android:singleLine="true"
-            android:hint="@string/course_instructor_box"/>
+            android:hint="@string/course_instructor_box"
+            android:id="@+id/instructor"/>
 
         <TextView android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -71,13 +74,15 @@
             android:layout_marginTop="5dip"
             android:layout_marginBottom="20dip"
             android:singleLine="true"
-            android:hint="@string/course_year_box"/>
+            android:hint="@string/course_year_box"
+            android:id="@+id/year"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/submit_course_button"
             android:id="@+id/create_class_submit_button"
+            android:onClick="ClassCreate"
             style="@style/Button"
             android:background="@drawable/stylebutton" />
 

@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.EventListener;
 import java.util.concurrent.ExecutionException;
 
@@ -53,18 +55,30 @@ public class Login extends AppCompatActivity {
                 password = (EditText) findViewById(R.id.Password);
                 String name = username.getText().toString();
                 String pass = password.getText().toString();
-                // starting background task to update product
 
                 sql = new loginSql();
                 sql.execute(name, pass, "");
                 try {
                     results = sql.get();
-                    if(!results.equals("0 results")) {
-                        loginSuccessful();
+
+                    String[] splitString = results.split("\\|");
+                    if (splitString.length > 1) {
+                        id = splitString[0];
+                        ArrayList<Course> courses = new ArrayList<>();
+                        if (splitString.length > 3) {
+                            for (int i = 1; i < splitString.length; i = i + 7) {
+                                Course course = new Course(splitString[i], splitString[i + 1], splitString[i + 2], splitString[i + 3], splitString[i + 4], splitString[i + 5], splitString[i + 6]);
+                                courses.add(course);
+                            }
+                        }
+                        loginSuccessful(courses);
                     }
-                    else {
-                        Toast.makeText(Login.this, "Incorrect Login Information", 3);
-                    }
+//                    if(!results.equals("0 results")) {
+//                        loginSuccessful();
+//                    }
+//                    else {
+//                        Toast.makeText(Login.this, "Incorrect Login Information", Toast.LENGTH_SHORT);
+//                    }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {
@@ -75,9 +89,13 @@ public class Login extends AppCompatActivity {
 
     }
 
-    public void loginSuccessful() {
+    public void loginSuccessful(ArrayList<Course> courses) {
         Intent intent = new Intent(Login.this, ClassList.class);
-        intent.putExtra("id", results);
+        intent.putExtra("id", id);
+        intent.putExtra("courseCount", courses.size());
+        if(courses.size() > 0) {
+            intent.putExtra("courses", courses);
+        }
         startActivity(intent);
     }
 
@@ -111,7 +129,6 @@ public class Login extends AppCompatActivity {
             }
 
             System.out.println(result);
-
             return result;
         }
         protected void onPostExecute(String result) {
