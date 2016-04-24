@@ -10,4 +10,90 @@
     tools:showIn="@layout/activity_register_account"
     tools:context="jarune.com.notesandthingsv4.RegisterAccount">
 
+    <TextView android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#372c24"
+        android:id="@+id/nameText"
+        android:text="@string/username_text"/>
+    <EditText android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nameText"
+        android:singleLine="true"
+        android:layout_marginTop="5dip"
+        android:layout_marginBottom="20dip"
+        android:id="@+id/Username"
+        android:hint="@string/username_box"/>
+
+    <TextView android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#372c24"
+        android:layout_below="@+id/Username"
+        android:id="@+id/PasswordText"
+        android:text="@string/password_text"/>
+    <EditText android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/PasswordText"
+        android:singleLine="true"
+        android:layout_marginTop="5dip"
+        android:layout_marginBottom="20dip"
+        android:hint="@string/password_box"
+        android:id="@+id/Password"
+        android:inputType="textPassword"/>
+
+    <TextView android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#372c24"
+        android:id="@+id/firstnameText"
+        android:layout_below="@+id/Password"
+        android:text="@string/firstname_text"/>
+    <EditText android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/firstnameText"
+        android:singleLine="true"
+        android:layout_marginTop="5dip"
+        android:layout_marginBottom="20dip"
+        android:hint="@string/firstname_box"
+        android:id="@+id/firstname"/>
+
+    <TextView android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#372c24"
+        android:id="@+id/lastnameText"
+        android:layout_below="@+id/firstname"
+        android:text="@string/lastname_text"/>
+
+    <EditText android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dip"
+        android:layout_marginBottom="20dip"
+        android:id="@+id/lastname"
+        android:layout_below="@+id/lastnameText"
+        android:singleLine="true"
+        android:hint="@string/lastname_box"/>
+
+    <TextView android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#372c24"
+        android:layout_below="@+id/lastname"
+        android:id="@+id/universityText"
+        android:text="@string/university_text"/>
+    <EditText android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dip"
+        android:layout_marginBottom="20dip"
+        android:layout_below="@+id/universityText"
+        android:singleLine="true"
+        android:hint="@string/university_box"
+        android:id="@+id/university"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/submit_user_button"
+        android:id="@+id/create_class_submit_button"
+        android:layout_below="@+id/university"
+        android:onClick="UserCreate"
+        style="@style/Button"
+        android:background="@drawable/stylebutton" />
+
 </RelativeLayout>

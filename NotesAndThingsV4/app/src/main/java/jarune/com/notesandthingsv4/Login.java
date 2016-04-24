@@ -62,10 +62,10 @@ public class Login extends AppCompatActivity {
                     results = sql.get();
 
                     String[] splitString = results.split("\\|");
-                    if (splitString.length > 1) {
+                    if (splitString.length > 0) {
                         id = splitString[0];
                         ArrayList<Course> courses = new ArrayList<>();
-                        if (splitString.length > 3) {
+                        if (splitString.length > 2) {
                             for (int i = 1; i < splitString.length; i = i + 7) {
                                 Course course = new Course(splitString[i], splitString[i + 1], splitString[i + 2], splitString[i + 3], splitString[i + 4], splitString[i + 5], splitString[i + 6]);
                                 courses.add(course);
@@ -73,12 +73,6 @@ public class Login extends AppCompatActivity {
                         }
                         loginSuccessful(courses);
                     }
-//                    if(!results.equals("0 results")) {
-//                        loginSuccessful();
-//                    }
-//                    else {
-//                        Toast.makeText(Login.this, "Incorrect Login Information", Toast.LENGTH_SHORT);
-//                    }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {

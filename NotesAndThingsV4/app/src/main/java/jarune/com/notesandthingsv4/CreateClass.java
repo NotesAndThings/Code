@@ -76,7 +76,6 @@ public class CreateClass extends AppCompatActivity {
         intent.putExtra("id", getIntent().getStringExtra("id"));
         intent.putExtra("courseCount", getIntent().getIntExtra("courseCount", 0));
         if(getIntent().getIntExtra("courseCount", 0) > 0) {
-            System.out.println(courses.size());
             intent.putExtra("courses", courses);
         }
         startActivity(intent);

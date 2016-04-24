@@ -61,11 +61,8 @@ public class ClassList extends AppCompatActivity {
         id = getIntent().getStringExtra("id");
         if(getIntent().getIntExtra("courseCount", 0) > 0) {
             courses = (ArrayList<Course>) getIntent().getSerializableExtra("courses");
-            System.out.println("here");
             ArrayList<String> courseNames = new ArrayList<>();
-            System.out.println("here2");
             for(int i = 0; i < courses.size(); i++) {
-                System.out.println("here3");
                 courseNames.add(courses.get(i).getName() + " - " + courses.get(i).getInstructor());
             }
             ListAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, courseNames);
