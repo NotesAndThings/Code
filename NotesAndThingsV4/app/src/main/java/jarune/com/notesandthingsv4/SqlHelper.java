@@ -32,6 +32,7 @@ public class SqlHelper {
         URL url = new URL(link);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
+        conn.setDoInput(true);
         conn.setDoOutput(true);
         Uri.Builder builder = new Uri.Builder()
                 .appendQueryParameter("pictureid", pictureId)
