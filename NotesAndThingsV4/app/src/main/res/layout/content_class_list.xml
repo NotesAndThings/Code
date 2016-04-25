@@ -10,10 +10,19 @@
     tools:showIn="@layout/activity_class_list"
     tools:context="jarune.com.notesandthingsv4.ClassList">
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/remove_btn"
+        android:text="@string/remove_btn_text"
+        android:onClick="removeButton"
+        android:layout_centerHorizontal="true" />
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/classList"
+        android:layout_below="@+id/remove_btn"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 

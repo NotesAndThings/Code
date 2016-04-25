@@ -55,5 +55,6 @@
     <string name="university_box">U of A</string>
     <string name="submit_user_button">Sign Up</string>
     <string name="title_activity_show_image">showImage</string>
+    <string name="remove_btn_text">Remove Classes</string>
 
 </resources>

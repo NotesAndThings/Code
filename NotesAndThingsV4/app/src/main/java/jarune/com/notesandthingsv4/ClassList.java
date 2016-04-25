@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -32,9 +33,12 @@ import java.util.concurrent.ExecutionException;
 //view item, it will move them to the notes
 //page for that class
 public class ClassList extends AppCompatActivity {
+    public boolean isRemoved;
+    private ListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        isRemoved = false;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_class_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -56,17 +60,17 @@ public class ClassList extends AppCompatActivity {
 //            e.printStackTrace();
 //        }
         ListView listView = (ListView) findViewById(R.id.classList);
-        ArrayList<String> courseNames = new ArrayList<>();
+        final ArrayList<String> courseNames = new ArrayList<>();
         for(int i = 0; i < Globals.courses.size(); i++) {
             courseNames.add(Globals.courses.get(i).getName() + " - " + Globals.courses.get(i).getInstructor());
         }
-        ListAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, courseNames);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, courseNames);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Intent intent = new Intent(ClassList.this, NotesList.class);
+                if (isRemoved == false) {
+                    Intent intent = new Intent(ClassList.this, NotesList.class);
 //                intent.putExtra("id", getIntent().getStringExtra("id"));
 //                intent.putExtra("courseCount", getIntent().getIntExtra("courseCount", 0));
 //                if(getIntent().getIntExtra("courseCount", 0) > 0) {
@@ -74,7 +78,24 @@ public class ClassList extends AppCompatActivity {
                     intent.putExtra("courseId", Globals.courses.get(position).getID());
                     intent.putExtra("courseName", Globals.courses.get(position).getName());
 //                }
-                startActivity(intent);
+                    startActivity(intent);
+                }
+                else {
+                    getClassListSql name = new getClassListSql();
+                    name.execute(Globals.UserId, Globals.courses.get(position).getID());
+                    try {
+                        String result = name.get();
+                        if(result.equals("Success")) {
+                            courseNames.remove(position);
+                            Globals.courses.remove(position);
+                            ((ArrayAdapter) adapter).notifyDataSetChanged();
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         });
     }
@@ -104,6 +125,27 @@ public class ClassList extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void removeButton (View view) {
+        if(isRemoved == true) {
+            ListView list = (ListView) findViewById(R.id.classList);
+            for(int i = 0; i < Globals.courses.size(); i++) {
+                list.getChildAt(i).setBackgroundColor(Color.WHITE);
+            }
+            Button button = (Button) findViewById(R.id.remove_btn);
+            button.setText("Remove Classes");
+            isRemoved = false;
+        }
+        else {
+            ListView list = (ListView) findViewById(R.id.classList);
+            for(int i = 0; i < Globals.courses.size(); i++) {
+                list.getChildAt(i).setBackgroundColor(Color.RED);
+            }
+            Button button = (Button) findViewById(R.id.remove_btn);
+            button.setText("Stop Removing");
+            isRemoved = true;
+        }
+    }
+
     class getClassListSql extends AsyncTask<String, String, String> {
 
         @Override
@@ -121,8 +163,9 @@ public class ClassList extends AppCompatActivity {
 
             String result = "";
             String userId = args[0];
+            String courseID = args[1];
             try {
-                result = SqlHelper.classlist(userId);
+                result = SqlHelper.removeClass(userId, courseID);
             } catch (IOException e) {
                 e.printStackTrace();
             }
