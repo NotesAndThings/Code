@@ -41,11 +41,9 @@ public class SearchClasses extends AppCompatActivity {
         String university = "U of A";
         EditText searchText = (EditText) findViewById(R.id.search_class_textbox);
 
-        if(searchText.getText().toString().isEmpty())
-        {
+        if (searchText.getText().toString().isEmpty()) {
             Toast.makeText(this, "Please Enter Class To Search", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        } else {
             sql = new searchSql();
             sql.execute(searchText.getText().toString(), university, "");
             //String stuff = SqlHelper.searchclasses(searchText.getText().toString(), university);
@@ -101,6 +99,7 @@ public class SearchClasses extends AppCompatActivity {
             System.out.println(result);
             return result;
         }
+
         protected void onPostExecute(String result) {
             // dismiss the dialog once product updated
             //pDialog.dismiss();
@@ -108,11 +107,10 @@ public class SearchClasses extends AppCompatActivity {
         }
     }
 
-<<<<<<< Updated upstream
     public void searchSuccessful(final ArrayList<Course> courses) {
         ListView listView = (ListView) findViewById(R.id.search_class_list);
         final ArrayList<String> courseNames = new ArrayList<>();
-        for(int i = 0; i < courses.size(); i++) {
+        for (int i = 0; i < courses.size(); i++) {
             courseNames.add(courses.get(i).getName() + " - " + courses.get(i).getInstructor());
         }
         ListAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, courseNames);
@@ -125,27 +123,19 @@ public class SearchClasses extends AppCompatActivity {
                 //ArrayList<Course> courses = (ArrayList<Course>) getIntent().getSerializableExtra("courses");
                 //courses.add(course);
                 String courseid = courses.get(position).getID();
-                String userid = "as160559578";
+                String userid = Globals.UserId;
 
                 lol = new subscribeclassSql();
                 lol.execute(courseid, userid, "");
 
                 try {
                     results = lol.get();
-
-                    String[] splitString = results.split("\\|");
                     //System.out.println(splitString.length);
-                    if (splitString.length > 0) {
-                        ArrayList<Course> courses = new ArrayList<>();
-                        if (splitString.length > 2) {
-                            for (int i = 0; i < splitString.length; i = i + 7) {
-                                Course course = new Course(splitString[i], splitString[i + 1], splitString[i + 2], splitString[i + 3], splitString[i + 4], splitString[i + 5], splitString[i + 6]);
-                                courses.add(course);
-                            }
-                        }
-                        Intent intent = new Intent(SearchClasses.this, ClassList.class);
-                        startActivity(intent);
+                    if (results.equals("Success")) {
+                        Globals.courses.add(courses.get(position));
                     }
+                    Intent intent = new Intent(SearchClasses.this, ClassList.class);
+                    startActivity(intent);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {
@@ -182,21 +172,22 @@ public class SearchClasses extends AppCompatActivity {
             System.out.println(result);
             return result;
         }
+
         protected void onPostExecute(String result) {
             // dismiss the dialog once product updated
             //pDialog.dismiss();
 
         }
-=======
-    public void searchSuccessful(ArrayList<Course> courses) {
-        Intent intent = new Intent(SearchClasses.this, SearchClasses.class);
+
+        public void searchSuccessful(ArrayList<Course> courses) {
+            Intent intent = new Intent(SearchClasses.this, SearchClasses.class);
 //        intent.putExtra("id", id);
 //        intent.putExtra("courseCount", courses.size());
 //        if(courses.size() > 0) {
 //            intent.putExtra("courses", courses);
 //        }
-        startActivity(intent);
->>>>>>> Stashed changes
-    }
+            startActivity(intent);
+        }
 
+    }
 }
