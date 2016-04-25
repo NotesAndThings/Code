@@ -27,8 +27,48 @@ public class SqlHelper {
     static String link = "http://jarunenotesandthings.com/Notesandthings.php";
 
     //Adding new picture function. Still in progress
-    public static String addnewnote() throws IOException {
-        return null;
+    public static String addnewnote(String pictureId,String p_courseId,String p_userId,String pictureuploaddate,String pictureclassdate,String picturesubject,String picturesummary,String picturecategory,String image_str) throws IOException {
+        CookieHandler.setDefault(new CookieManager(null, CookiePolicy.ACCEPT_ALL));
+        URL url = new URL(link);
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("POST");
+        conn.setDoOutput(true);
+        Uri.Builder builder = new Uri.Builder()
+                .appendQueryParameter("pictureid", pictureId)
+                .appendQueryParameter("p_courseid", p_courseId)
+                .appendQueryParameter("p_userid", p_userId)
+                .appendQueryParameter("pictureuploaddate", pictureuploaddate)
+                .appendQueryParameter("pictureclassdate", pictureclassdate)
+                .appendQueryParameter("picturesubject", picturesubject)
+                .appendQueryParameter("picturesummary", picturesummary)
+                .appendQueryParameter("picturecategory", picturecategory)
+                .appendQueryParameter("pictureimage", image_str)
+                .appendQueryParameter("command", "addnewnote");
+        String query = builder.build().getEncodedQuery();
+        OutputStream os = conn.getOutputStream();
+        BufferedWriter writer = new BufferedWriter(
+                new OutputStreamWriter(os, "UTF-8"));
+        writer.write(query);
+        writer.flush();
+        writer.close();
+        os.close();
+
+        conn.connect();
+        int status = conn.getResponseCode();
+        System.out.println(status);
+        BufferedReader reader = new BufferedReader(new
+                InputStreamReader(conn.getInputStream()));
+        StringBuilder sb = new StringBuilder();
+        String line = "";
+
+        // Read Server Response
+        //Will look like:
+        //University|CourseNum|Instructor|Semester|Year|<br>
+        while ((line = reader.readLine()) != null) {
+            sb.append(line);
+            //break;
+        }
+        return sb.toString();
     }
 
     //function to get the class list for a particular user
@@ -204,6 +244,7 @@ public class SqlHelper {
         conn.setDoOutput(true);
         conn.setRequestMethod("POST");
         conn.setDoOutput(true);
+        System.out.println(courseid);
         Uri.Builder builder = new Uri.Builder()
                 .appendQueryParameter("courseid", courseid)
                 .appendQueryParameter("command", "listnotes");

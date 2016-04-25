@@ -54,5 +54,6 @@
     <string name="university_text">University</string>
     <string name="university_box">U of A</string>
     <string name="submit_user_button">Sign Up</string>
+    <string name="title_activity_show_image">showImage</string>
 
 </resources>

@@ -10,4 +10,34 @@
     tools:showIn="@layout/activity_add_new_note"
     tools:context="jarune.com.notesandthingsv4.AddNewNote">
 
+    <DatePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/category"
+        android:id="@+id/classDate"></DatePicker>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/subject"
+        android:hint="Picture Subject"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Picture Summary"
+        android:id="@+id/summary"
+        android:layout_below="@+id/subject"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Picture Category"
+        android:id="@+id/category"
+        android:layout_below="@+id/summary"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/classDate"
+        android:id="@+id/submitBtn"
+        android:text="Take Picture"
+        android:onClick="takePic"/>
+
 </RelativeLayout>

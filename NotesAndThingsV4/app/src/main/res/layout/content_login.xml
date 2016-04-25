@@ -37,6 +37,7 @@
         android:layout_below="@+id/Password"
         android:layout_alignLeft="@+id/Password"
         android:layout_alignStart="@+id/Password"
+        style="@style/Button"
         android:layout_alignRight="@+id/Password"
         android:layout_alignEnd="@+id/Password" />
 
@@ -46,6 +47,7 @@
         android:text="Register"
         android:id="@+id/RegisterButton"
         android:onClick="registerAccount"
+        style="@style/Button"
         android:layout_below="@+id/SignInbutton"
         android:layout_alignLeft="@+id/SignInbutton"
         android:layout_alignStart="@+id/SignInbutton"

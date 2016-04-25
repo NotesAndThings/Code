@@ -79,6 +79,7 @@ public class ClassList extends AppCompatActivity {
                 if(getIntent().getIntExtra("courseCount", 0) > 0) {
                     intent.putExtra("courses", courses);
                     intent.putExtra("courseId", courses.get(position).getID());
+                    intent.putExtra("courseName", courses.get(position).getName());
                 }
                 startActivity(intent);
             }
