@@ -108,6 +108,7 @@ public class SearchClasses extends AppCompatActivity {
         }
     }
 
+<<<<<<< Updated upstream
     public void searchSuccessful(final ArrayList<Course> courses) {
         ListView listView = (ListView) findViewById(R.id.search_class_list);
         final ArrayList<String> courseNames = new ArrayList<>();
@@ -186,6 +187,16 @@ public class SearchClasses extends AppCompatActivity {
             //pDialog.dismiss();
 
         }
+=======
+    public void searchSuccessful(ArrayList<Course> courses) {
+        Intent intent = new Intent(SearchClasses.this, SearchClasses.class);
+//        intent.putExtra("id", id);
+//        intent.putExtra("courseCount", courses.size());
+//        if(courses.size() > 0) {
+//            intent.putExtra("courses", courses);
+//        }
+        startActivity(intent);
+>>>>>>> Stashed changes
     }
 
 }

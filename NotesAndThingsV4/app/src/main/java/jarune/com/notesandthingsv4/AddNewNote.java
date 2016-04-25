@@ -89,7 +89,7 @@ public class AddNewNote extends AppCompatActivity {
             String image_str = Base64.encodeToString(byte_arr, Base64.DEFAULT);
 
             String p_courseid = getIntent().getStringExtra("courseId");
-            String p_userid = getIntent().getStringExtra("id");
+            String p_userid = Globals.UserId;
             String uploaddate = getDateTime(new Date(System.currentTimeMillis()));
             String classdate = getDateTime(new Date(((DatePicker) findViewById(R.id.classDate)).getCalendarView().getDate()));
             String summary = ((EditText) findViewById(R.id.summary)).getText().toString();

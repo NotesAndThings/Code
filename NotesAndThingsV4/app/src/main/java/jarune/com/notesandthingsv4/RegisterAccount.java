@@ -37,8 +37,9 @@ public class RegisterAccount extends AppCompatActivity {
         try {
             String result = sql.get();
             if(result.equals("Success")) {
+                Globals.UserId = id;
                 Intent intent = new Intent(RegisterAccount.this, ClassList.class);
-                intent.putExtra("id", id);
+//                intent.putExtra("id", id);
                 startActivity(intent);
             }
         } catch (InterruptedException e) {

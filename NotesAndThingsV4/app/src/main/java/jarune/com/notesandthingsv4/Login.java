@@ -55,15 +55,15 @@ public class Login extends AppCompatActivity {
 
                     String[] splitString = results.split("\\|");
                     if (splitString.length > 0) {
-                        id = splitString[0];
-                        ArrayList<Course> courses = new ArrayList<>();
+                        Globals.UserId = splitString[0];
+                        Globals.courses = new ArrayList<>();
                         if (splitString.length > 2) {
                             for (int i = 1; i < splitString.length; i = i + 7) {
                                 Course course = new Course(splitString[i], splitString[i + 1], splitString[i + 2], splitString[i + 3], splitString[i + 4], splitString[i + 5], splitString[i + 6]);
-                                courses.add(course);
+                                Globals.courses.add(course);
                             }
                         }
-                        loginSuccessful(courses);
+                        loginSuccessful();
                     }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -75,13 +75,13 @@ public class Login extends AppCompatActivity {
 
     }
 
-    public void loginSuccessful(ArrayList<Course> courses) {
+    public void loginSuccessful() {
         Intent intent = new Intent(Login.this, ClassList.class);
-        intent.putExtra("id", id);
-        intent.putExtra("courseCount", courses.size());
-        if(courses.size() > 0) {
-            intent.putExtra("courses", courses);
-        }
+//        intent.putExtra("id", id);
+//        intent.putExtra("courseCount", courses.size());
+//        if(courses.size() > 0) {
+//            intent.putExtra("courses", courses);
+//        }
         startActivity(intent);
     }
 

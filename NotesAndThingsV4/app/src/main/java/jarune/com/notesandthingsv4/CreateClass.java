@@ -70,14 +70,13 @@ public class CreateClass extends AppCompatActivity {
     }
 
     public void Successful(Course course) {
-        ArrayList<Course> courses = (ArrayList<Course>) getIntent().getSerializableExtra("courses");
-        courses.add(course);
+        Globals.courses.add(course);
         Intent intent = new Intent(CreateClass.this, ClassList.class);
-        intent.putExtra("id", getIntent().getStringExtra("id"));
-        intent.putExtra("courseCount", (getIntent().getIntExtra("courseCount", 0))+1);
-        if(getIntent().getIntExtra("courseCount", 0) > 0) {
-            intent.putExtra("courses", courses);
-        }
+//        intent.putExtra("id", getIntent().getStringExtra("id"));
+//        intent.putExtra("courseCount", (getIntent().getIntExtra("courseCount", 0))+1);
+//        if(getIntent().getIntExtra("courseCount", 0) > 0) {
+//            intent.putExtra("courses", courses);
+//        }
         startActivity(intent);
     }
 
@@ -99,7 +98,7 @@ public class CreateClass extends AppCompatActivity {
             try {
                 result = SqlHelper.createclass(id, university, number, name, instructor, semester, year);
                 if(result.equals("Success")) {
-                    result = SqlHelper.addclass(getIntent().getStringExtra("id"), id);
+                    result = SqlHelper.addclass(Globals.UserId, id);
                 }
             } catch (IOException e) {
                 e.printStackTrace();

@@ -68,13 +68,13 @@ public class NotesList extends AppCompatActivity {
 
     public void createNote(View v) {
         Intent intent = new Intent(NotesList.this, AddNewNote.class);
-        intent.putExtra("id", getIntent().getStringExtra("id"));
-        intent.putExtra("courseCount", getIntent().getIntExtra("courseCount", 0));
-        if(getIntent().getIntExtra("courseCount", 0) > 0) {
-            intent.putExtra("courses", (ArrayList<Course>) getIntent().getSerializableExtra("courses"));
-            intent.putExtra("courseId", getIntent().getStringExtra("courseId"));
-            intent.putExtra("courseName", getIntent().getStringExtra("courseName"));
-        }
+//        intent.putExtra("id", getIntent().getStringExtra("id"));
+//        intent.putExtra("courseCount", getIntent().getIntExtra("courseCount", 0));
+//        if(getIntent().getIntExtra("courseCount", 0) > 0) {
+//            intent.putExtra("courses", (ArrayList<Course>) getIntent().getSerializableExtra("courses"));
+           intent.putExtra("courseId", getIntent().getStringExtra("courseId"));
+//            intent.putExtra("courseName", getIntent().getStringExtra("courseName"));
+//        }
         startActivity(intent);
     }
 

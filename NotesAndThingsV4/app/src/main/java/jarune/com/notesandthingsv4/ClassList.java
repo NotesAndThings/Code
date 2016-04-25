@@ -2,6 +2,7 @@ package jarune.com.notesandthingsv4;
 
 import android.content.Intent;
 import android.database.DataSetObserver;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -32,12 +33,8 @@ import java.util.concurrent.ExecutionException;
 //page for that class
 public class ClassList extends AppCompatActivity {
 
-    public ArrayList<Course> courses;
-    public String id;
-    public boolean hasCourses;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        hasCourses = false;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_class_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -59,28 +56,24 @@ public class ClassList extends AppCompatActivity {
 //            e.printStackTrace();
 //        }
         ListView listView = (ListView) findViewById(R.id.classList);
-        id = getIntent().getStringExtra("id");
-        if(getIntent().getIntExtra("courseCount", 0) > 0) {
-            courses = (ArrayList<Course>) getIntent().getSerializableExtra("courses");
-            ArrayList<String> courseNames = new ArrayList<>();
-            for(int i = 0; i < courses.size(); i++) {
-                courseNames.add(courses.get(i).getName() + " - " + courses.get(i).getInstructor());
-            }
-            ListAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, courseNames);
-            listView.setAdapter(adapter);
+        ArrayList<String> courseNames = new ArrayList<>();
+        for(int i = 0; i < Globals.courses.size(); i++) {
+            courseNames.add(Globals.courses.get(i).getName() + " - " + Globals.courses.get(i).getInstructor());
         }
+        ListAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, courseNames);
+        listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent intent = new Intent(ClassList.this, NotesList.class);
-                intent.putExtra("id", getIntent().getStringExtra("id"));
-                intent.putExtra("courseCount", getIntent().getIntExtra("courseCount", 0));
-                if(getIntent().getIntExtra("courseCount", 0) > 0) {
-                    intent.putExtra("courses", courses);
-                    intent.putExtra("courseId", courses.get(position).getID());
-                    intent.putExtra("courseName", courses.get(position).getName());
-                }
+//                intent.putExtra("id", getIntent().getStringExtra("id"));
+//                intent.putExtra("courseCount", getIntent().getIntExtra("courseCount", 0));
+//                if(getIntent().getIntExtra("courseCount", 0) > 0) {
+//                    intent.putExtra("courses", courses);
+                    intent.putExtra("courseId", Globals.courses.get(position).getID());
+                    intent.putExtra("courseName", Globals.courses.get(position).getName());
+//                }
                 startActivity(intent);
             }
         });
@@ -88,21 +81,26 @@ public class ClassList extends AppCompatActivity {
 
     public void searchButton(View view) {
         Intent intent = new Intent(ClassList.this, SearchClasses.class);
-        intent.putExtra("id", getIntent().getStringExtra("id"));
-        intent.putExtra("courseCount", getIntent().getIntExtra("courseCount", 0));
-        if(getIntent().getIntExtra("courseCount", 0) > 0) {
-            intent.putExtra("courses", courses);
-        }
+//        intent.putExtra("id", getIntent().getStringExtra("id"));
+//        intent.putExtra("courseCount", getIntent().getIntExtra("courseCount", 0));
+//        if(getIntent().getIntExtra("courseCount", 0) > 0) {
+//            intent.putExtra("courses", courses);
+//        }
         startActivity(intent);
+//        ListView list = (ListView) findViewById(R.id.classList);
+//        for(int i = 0; i < Globals.courses.size(); i++) {
+//            list.getChildAt(i).setBackgroundColor(Color.RED);
+//        }
+
     }
 
     public void createButton(View view) {
         Intent intent = new Intent(ClassList.this, CreateClass.class);
-        intent.putExtra("id", getIntent().getStringExtra("id"));
-        intent.putExtra("courseCount", getIntent().getIntExtra("courseCount", 0));
-        if(getIntent().getIntExtra("courseCount", 0) > 0) {
-            intent.putExtra("courses", courses);
-        }
+//        intent.putExtra("id", getIntent().getStringExtra("id"));
+//        intent.putExtra("courseCount", getIntent().getIntExtra("courseCount", 0));
+//        if(getIntent().getIntExtra("courseCount", 0) > 0) {
+//            intent.putExtra("courses", courses);
+//        }
         startActivity(intent);
     }
 
@@ -139,5 +137,7 @@ public class ClassList extends AppCompatActivity {
 
         }
     }
+
+
 
 }
