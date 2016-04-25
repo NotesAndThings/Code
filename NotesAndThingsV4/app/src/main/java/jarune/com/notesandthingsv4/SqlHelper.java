@@ -232,8 +232,43 @@ public class SqlHelper {
         return sb.toString();
     }
 
-    public static String searchclasses() {
-        return null;
+    public static String searchclasses(String coursename, String university) throws IOException {
+        CookieHandler.setDefault(new CookieManager(null, CookiePolicy.ACCEPT_ALL));
+        URL url = new URL(link);
+
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+        conn.setDoOutput(true);
+        conn.setRequestMethod("POST");
+        conn.setDoOutput(true);
+        //System.out.println(coursename);
+        Uri.Builder builder = new Uri.Builder()
+                .appendQueryParameter("coursename", coursename)
+                .appendQueryParameter("university", university)
+                .appendQueryParameter("command", "searchclasses");
+        String query = builder.build().getEncodedQuery();
+        OutputStream os = conn.getOutputStream();
+        BufferedWriter writer = new BufferedWriter(
+                new OutputStreamWriter(os, "UTF-8"));
+        writer.write(query);
+        writer.flush();
+        writer.close();
+        os.close();
+
+        conn.connect();
+        BufferedReader reader = new BufferedReader(new
+                InputStreamReader(conn.getInputStream()));
+        StringBuilder sb = new StringBuilder();
+        String line = null;
+
+        // Read Server Response
+        //Will look like:
+        //pictureId|P_userId|ClassDate|Summary|<br>
+        while ((line = reader.readLine()) != null) {
+            sb.append(line);
+            //break;
+        }
+        return sb.toString();
     }
 
     public static String listnotes(String courseid) throws IOException {

@@ -25,7 +25,8 @@
         android:text="@string/search_button"
         android:id="@+id/search_classes_search_button"
         style="@style/Button"
-        android:background="@drawable/stylebutton" />
+        android:background="@drawable/stylebutton"
+        android:onClick="searchClassesButton" />
 
     <ListView
         android:layout_width="match_parent"
