@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NotesAndThingsV4</string>
+    <string name="app_name">Notes and Things</string>
     
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -42,7 +42,7 @@
     <string name="submit_course_button">Sumbit Course</string>
     <string name="title_activity_testzone">testzone</string>
     <string name="register">Register</string>
-    <string name="title_activity_login">Login</string>
+    <string name="title_activity_login">Notes&amp;Things</string>
     <string name="username_text">Username</string>
     <string name="username_box">JohnnyDoeBoy</string>
     <string name="password_text">Password</string>

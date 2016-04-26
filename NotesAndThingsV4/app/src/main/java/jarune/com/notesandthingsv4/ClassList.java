@@ -5,6 +5,7 @@ import android.database.DataSetObserver;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -138,7 +139,7 @@ public class ClassList extends AppCompatActivity {
         else {
             ListView list = (ListView) findViewById(R.id.classList);
             for(int i = 0; i < Globals.courses.size(); i++) {
-                list.getChildAt(i).setBackgroundColor(Color.RED);
+                list.getChildAt(i).setBackgroundColor(Color.rgb(204,201,201));
             }
             Button button = (Button) findViewById(R.id.remove_btn);
             button.setText("Stop Removing");

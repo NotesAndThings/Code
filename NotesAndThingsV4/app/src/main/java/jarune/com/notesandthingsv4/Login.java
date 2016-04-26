@@ -54,7 +54,7 @@ public class Login extends AppCompatActivity {
                     results = sql.get();
 
                     String[] splitString = results.split("\\|");
-                    if (splitString.length > 0) {
+                    if (splitString.length > 1) {
                         Globals.UserId = splitString[0];
                         Globals.courses = new ArrayList<>();
                         if (splitString.length > 2) {

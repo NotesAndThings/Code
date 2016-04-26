@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.ExecutionException;
 
@@ -38,6 +39,10 @@ public class RegisterAccount extends AppCompatActivity {
             String result = sql.get();
             if(result.equals("Success")) {
                 Globals.UserId = id;
+                if(Globals.courses != null) {
+                    Globals.courses.clear();
+                }
+                Globals.courses = new ArrayList<>();
                 Intent intent = new Intent(RegisterAccount.this, ClassList.class);
 //                intent.putExtra("id", id);
                 startActivity(intent);

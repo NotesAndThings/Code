@@ -84,7 +84,7 @@ public class AddNewNote extends AppCompatActivity {
          * Convert the image to a string
          * */
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, stream); //compress to which format you want.
+            bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream); //compress to which format you want.
             byte[] byte_arr = stream.toByteArray();
             String image_str = Base64.encodeToString(byte_arr, Base64.DEFAULT);
 
@@ -98,7 +98,8 @@ public class AddNewNote extends AppCompatActivity {
             String pictureid = p_userid + (new Random().nextInt());
             createNote note = new createNote();
             note.execute(pictureid, p_courseid, p_userid, uploaddate, classdate, subject, summary, category, image_str);
-            Intent intent = new Intent(AddNewNote.this, showImage.class);
+            Intent intent = new Intent(AddNewNote.this, NotesList.class);
+            intent.putExtra("courseId",getIntent().getStringExtra("courseId"));
             startActivity(intent);
         }
     }

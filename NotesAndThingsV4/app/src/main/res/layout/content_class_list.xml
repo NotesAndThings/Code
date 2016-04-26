@@ -16,7 +16,9 @@
         android:id="@+id/remove_btn"
         android:text="@string/remove_btn_text"
         android:onClick="removeButton"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        style="@style/Button"
+        android:background="@drawable/stylebutton"/>
 
     <ListView
         android:layout_width="match_parent"
